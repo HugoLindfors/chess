@@ -1,7 +1,25 @@
+function movePiece(piece) {
+  const pieceId = piece.id
+  const pieceType = piece.classList[0]
+  const pieceSlotElement = piece.parentElement
+  const pieceSlotId = pieceSlotElement.id
+  const pieceSlot = Number(pieceSlotId.split('-')[1])
+
+  console.log(`type: "${pieceType}", slot: ${pieceSlot}`)
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   document.querySelector('#app').innerHTML += `<div id="chessboard"></div>`
   renderChessboard()
-  renderWhiteQRPawn()
+  renderPieces()
+
+  const pieces = document.querySelectorAll('.piece')
+
+  pieces.forEach(piece => {
+    piece.addEventListener('click', () => {
+      movePiece(piece)
+    })
+  })
 })
 
 function renderChessboard() {
@@ -26,7 +44,7 @@ function renderChessboard() {
   }
 }
 
-function renderWhiteQRPawn() {
+function renderPieces() {
   document.querySelector(`#tile-1-slot`).innerHTML += `<div id="QR-black" class="rook rook-black piece piece-black">R</div>`
   document.querySelector(`#tile-2-slot`).innerHTML += `<div id="QN-black" class="knight knight-black piece piece-black">N</div>`
   document.querySelector(`#tile-3-slot`).innerHTML += `<div id="QB-black" class="bishop bishop-black piece piece-black">B</div>`
@@ -36,11 +54,11 @@ function renderWhiteQRPawn() {
   document.querySelector(`#tile-7-slot`).innerHTML += `<div id="QN-black" class="knight knight-black piece piece-black">N</div>`
   document.querySelector(`#tile-8-slot`).innerHTML += `<div id="QR-black" class="rook rook-black piece piece-black">R</div>`
 
-  for(let i = 9; i <= 16; i++) {
+  for (let i = 9; i <= 16; i++) {
     document.querySelector(`#tile-${i}-slot`).innerHTML += `<div class="pawn piece piece-black"></div>`
   }
 
-  for(let i = 49; i <= 56; i++) {
+  for (let i = 49; i <= 56; i++) {
     document.querySelector(`#tile-${i}-slot`).innerHTML += `<div class="pawn piece piece-white"></div>`
   }
 
