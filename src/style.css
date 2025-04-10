@@ -38,6 +38,13 @@
   font-size: 32px;
 }
 
+.move {
+  border-radius: 999px;
+  width: 35px;
+  height: 35px;
+  background-color: blue;
+}
+
 .piece {
   border-radius: 999px;
   width: 50px;

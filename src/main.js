@@ -6,6 +6,16 @@ function movePiece(piece) {
   const pieceSlot = Number(pieceSlotId.split('-')[1])
 
   console.log(`type: "${pieceType}", slot: ${pieceSlot}`)
+
+  if (pieceType === 'knight') {
+    document.querySelector(`#tile-${pieceSlot - 15}-slot`).innerHTML += `<div class="move"></div>`
+    document.querySelector(`#tile-${pieceSlot - 17}-slot`).innerHTML += `<div class="move"></div>`
+  }
+
+  if (pieceType === 'pawn') {
+    document.querySelector(`#tile-${pieceSlot - 8}-slot`).innerHTML += `<div class="move"></div>`
+    document.querySelector(`#tile-${pieceSlot - 16}-slot`).innerHTML += `<div class="move"></div>`
+  }
 }
 
 document.addEventListener('DOMContentLoaded', () => {
