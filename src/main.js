@@ -8,8 +8,16 @@ function movePiece(piece) {
   console.log(`type: "${pieceType}", slot: ${pieceSlot}`)
 
   if (pieceType === 'knight') {
-    document.querySelector(`#tile-${pieceSlot - 15}-slot`).innerHTML += `<div class="move"></div>`
-    document.querySelector(`#tile-${pieceSlot - 17}-slot`).innerHTML += `<div class="move"></div>`
+    document.querySelector(`#tile-${pieceSlot - 15}-slot`).innerHTML += `<div id="${pieceId}-${pieceSlot - 15}-move" class="move"></div>`
+    document.querySelector(`#tile-${pieceSlot - 17}-slot`).innerHTML += `<div id="${pieceId}-${pieceSlot - 17}-move" class="move"></div>`
+
+    document.querySelector(`#${pieceId}-${pieceSlot - 15}-move`).addEventListener('click', () => {
+      movePiece2(`${pieceId}-${pieceSlot}-${pieceSlot - 15}-move`)
+    })
+
+    document.querySelector(`#${pieceId}-${pieceSlot - 17}-move`).addEventListener('click', () => {
+      movePiece2(`${pieceId}-${pieceSlot}-${pieceSlot - 17}-move`)
+    })
   }
 
   if (pieceType === 'pawn') {
@@ -18,10 +26,22 @@ function movePiece(piece) {
   }
 }
 
+function movePiece2(move) {
+  console.log(move)
+
+  const piece = `${move.split('-')[0]}-${move.split('-')[1]}`
+  const oldMove = Number(move.split('-')[2])
+  const move2 = Number(move.split('-')[3])
+
+  console.log((`#tile-${move2}-slot`))
+  document.querySelector(`#tile-${oldMove}-slot`).innerHTML = ''
+  document.querySelector(`#tile-${move2}-slot`).innerHTML = `<div id="${piece}" class="knight knight-white piece piece-white">N</div>`
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   document.querySelector('#app').innerHTML += `<div id="chessboard"></div>`
-  renderChessboard()
-  renderPieces()
+  drawChessboard()
+  placePieces()
 
   const pieces = document.querySelectorAll('.piece')
 
@@ -32,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
   })
 })
 
-function renderChessboard() {
+function drawChessboard() {
   let letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h']
   let letter = 0
 
@@ -54,7 +74,7 @@ function renderChessboard() {
   }
 }
 
-function renderPieces() {
+function placePieces() {
   document.querySelector(`#tile-1-slot`).innerHTML += `<div id="QR-black" class="rook rook-black piece piece-black">R</div>`
   document.querySelector(`#tile-2-slot`).innerHTML += `<div id="QN-black" class="knight knight-black piece piece-black">N</div>`
   document.querySelector(`#tile-3-slot`).innerHTML += `<div id="QB-black" class="bishop bishop-black piece piece-black">B</div>`
