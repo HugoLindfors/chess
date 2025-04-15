@@ -42,8 +42,6 @@ function movePiece2(move, discardedMoves, pieceType, pieceId) {
   document.querySelector(`#tile-${oldMove}-slot`).innerHTML = ''
 
   discardedMoves.forEach(discardedMove => {
-    const dmPiece = `${discardedMove.split('-')[0]}-${discardedMove.split('-')[1]}`
-    const dmOldMove = Number(discardedMove.split('-')[2])
     const dmMove2 = Number(discardedMove.split('-')[3])
 
     document.querySelector(`#tile-${dmMove2}-slot`).innerHTML = ''
@@ -67,7 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
 })
 
 function drawChessboard() {
-  let letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h']
+  let letters = 'abcdefgh'
   let letter = 0
 
   for (let i = 1; i <= 64; i++) {
@@ -123,3 +121,5 @@ function placePieces() {
   document.querySelector(`#tile-63-slot`).innerHTML += `<div id="QN-white" class="knight knight-white piece piece-white">N</div>`
   document.querySelector(`#tile-64-slot`).innerHTML += `<div id="QR-white" class="rook rook-white piece piece-white">R</div>`
 }
+
+export { drawChessboard }

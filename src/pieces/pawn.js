@@ -1,6 +1,6 @@
 import Piece from "./piece"
 
-class Knight extends Piece {
+class Pawn extends Piece {
   isValid(newPosition) {
     switch (newPosition.row) {
       case this.position.row + 8 && this.color === 'black':
@@ -17,4 +17,4 @@ class Knight extends Piece {
   }
 }
 
-export default Knight
+export default Pawn

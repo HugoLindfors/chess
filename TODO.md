@@ -1,0 +1,1 @@
+- I think I should consider moving to TypeScript instead
