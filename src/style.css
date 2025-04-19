@@ -1,20 +1,20 @@
+@import 'bootstrap';
+
 #app {
   text-align: center;
-  height: 100vh;
-  width: 100vw;
+  height: 100dvh;
+  width: 100dvw;
 }
 
 #chessboard {
   display: grid;
   grid-template-columns: repeat(8, 1fr);
   border: 1px solid #1a1a1a;
-  height: 100vh;
+  height: 100dvh;
   width: 100vh;
 }
 
 .tile {
-  display: grid;
-  grid-template-rows: 2fr 1fr 1fr;
   width: calc(100%/8);
   height: calc(100%/8);
   text-align: center;
